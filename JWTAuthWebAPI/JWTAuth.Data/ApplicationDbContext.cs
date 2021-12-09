@@ -1,6 +1,6 @@
 ﻿namespace JWTAuthWebAPI.Data
 {
-    using JWTAuthWebAPI.Models;
+    using JWTAuth.Data.Entities;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 

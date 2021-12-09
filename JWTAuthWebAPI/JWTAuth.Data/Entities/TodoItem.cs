@@ -1,5 +1,5 @@
-﻿namespace JWTAuthWebAPI.Models
-{
+﻿namespace JWTAuth.Data.Entities
+{ 
     public class TodoItem
     {
         public int Id { get; set; }

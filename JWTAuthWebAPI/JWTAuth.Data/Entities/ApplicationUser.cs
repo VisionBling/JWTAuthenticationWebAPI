@@ -1,4 +1,4 @@
-﻿namespace JWTAuthWebAPI.Models
+﻿namespace JWTAuth.Data.Entities
 {
     using Microsoft.AspNetCore.Identity;
 

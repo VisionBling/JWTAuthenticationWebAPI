@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTAuthWebAPI", "JWTAuthWebAPI\JWTAuthWebAPI.csproj", "{F939985E-C44E-46D6-885F-B9FE691362D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTAuth.Data", "JWTAuth.Data\JWTAuth.Data.csproj", "{3FEFA57A-756F-4F78-AFB9-E88C4609B09C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F939985E-C44E-46D6-885F-B9FE691362D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F939985E-C44E-46D6-885F-B9FE691362D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F939985E-C44E-46D6-885F-B9FE691362D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FEFA57A-756F-4F78-AFB9-E88C4609B09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEFA57A-756F-4F78-AFB9-E88C4609B09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEFA57A-756F-4F78-AFB9-E88C4609B09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEFA57A-756F-4F78-AFB9-E88C4609B09C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
