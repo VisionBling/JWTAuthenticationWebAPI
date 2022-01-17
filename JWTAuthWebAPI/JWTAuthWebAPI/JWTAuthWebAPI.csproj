@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\JWTAuth.Data\JWTAuth.Data.csproj" />
   </ItemGroup>
 
 </Project>

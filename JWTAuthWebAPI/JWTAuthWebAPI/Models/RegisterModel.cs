@@ -23,7 +23,8 @@ namespace JWTAuthWebAPI.Models
 
         [Required]
         public string LastName { get; set; }
-        // You can add more fields as needed
+        public string Role { get; set; } 
+
     }
 
 }
