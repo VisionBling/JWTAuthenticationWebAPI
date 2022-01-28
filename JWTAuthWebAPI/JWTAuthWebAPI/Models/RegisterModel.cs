@@ -23,7 +23,7 @@ namespace JWTAuthWebAPI.Models
 
         [Required]
         public string LastName { get; set; }
-        public string Role { get; set; } 
+        public List<string> Roles { get; set; } = new List<string>(); // Changed to accommodate multiple roles
 
     }
 

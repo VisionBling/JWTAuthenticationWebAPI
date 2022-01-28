@@ -30,12 +30,12 @@ namespace JWTAuthWebAPI.Services
             var roles = await _userManager.GetRolesAsync(user);
 
             var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-        new Claim("uid", user.Id)
-    };
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim("uid", user.Id)
+                };
 
             // Add role claims
             foreach (var role in roles)
@@ -68,6 +68,7 @@ namespace JWTAuthWebAPI.Services
             {
                 return IdentityResult.Failed(new IdentityError { Description = "User with this email already exists." });
             }
+
             ApplicationUser user = new ApplicationUser
             {
                 Email = model.Email,
@@ -76,23 +77,24 @@ namespace JWTAuthWebAPI.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
             };
+
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                // Check if the role specified exists; if not, default to "user"
-                var validRole = !string.IsNullOrWhiteSpace(model.Role) && (model.Role.ToLower() == "admin" || model.Role.ToLower() == "user") ? model.Role : "user";
-              
-                // Ensure the role exists in the system
-                if (!await _roleManager.RoleExistsAsync(validRole))
+                foreach (var roleName in model.Roles)
                 {
-                    await _roleManager.CreateAsync(new IdentityRole(validRole));
+                    var validRole = roleName.ToLower() == "admin" || roleName.ToLower() == "user" ? roleName : "user";
+                    if (!await _roleManager.RoleExistsAsync(validRole))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(validRole));
+                    }
+                    await _userManager.AddToRoleAsync(user, validRole);
                 }
-
-                await _userManager.AddToRoleAsync(user, validRole);
             }
 
             return result;
         }
+
 
         public async Task<LoginResponse> LoginUserAsync(LoginModel model)
         {
