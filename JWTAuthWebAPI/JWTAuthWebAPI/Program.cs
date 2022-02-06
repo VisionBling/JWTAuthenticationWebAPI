@@ -1,4 +1,6 @@
 using JWTAuthWebAPI.Data;
+using JWTAuthWebAPI.Services;
+using JWTAuthWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Add this line if you're using Entity Framework Core
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
