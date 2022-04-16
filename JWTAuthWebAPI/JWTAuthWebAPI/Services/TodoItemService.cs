@@ -37,8 +37,9 @@ namespace JWTAuthWebAPI.Services
 
         public async Task<TodoItemModel> GetItemByIdAsync(int id)
         {
-            var item = await _context.TodoItems.FindAsync(id);
-            if (item == null) return null;
+            var item = await _context.TodoItems.Include(r=>r.User).Where(r=>r.Id == id).FirstOrDefaultAsync();    
+            if (item == null) throw new Exception("Item not found.");
+
 
             return new TodoItemModel
             {
@@ -66,10 +67,8 @@ namespace JWTAuthWebAPI.Services
             };
 
             _context.TodoItems.Add(item);
-            await _context.SaveChangesAsync();
-
-            // Map back to model including User details
-            model.Id = item.Id;
+           
+            model.Id = await _context.SaveChangesAsync();          
             model.User = new User
             {
                 UserId = user.Id,
