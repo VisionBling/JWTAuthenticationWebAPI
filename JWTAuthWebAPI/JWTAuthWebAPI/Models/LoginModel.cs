@@ -8,17 +8,19 @@
         public string Password { get; set; }
     }
 
-    public class LoginResponse
+    public class AuthResponse
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public string Token { get; set; } // Optional: Include the token in the response
+        public string Token { get; set; }
+        public string RefreshToken { get; set; }
 
-        public LoginResponse(bool success, string message, string token = null)
+        public AuthResponse(bool success, string message, string token = null, string refreshToken = null)
         {
             Success = success;
             Message = message;
             Token = token;
+            RefreshToken = refreshToken;
         }
     }
 

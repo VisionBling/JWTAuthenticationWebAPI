@@ -12,6 +12,8 @@
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
