@@ -53,5 +53,16 @@ namespace JWTAuthWebAPI.Controllers
 
             return BadRequest(new { message = loginResponse.Message });
         }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
+        {
+            var authResponse = await _authService.RefreshTokenAsync(model.RefreshToken);
+            if (authResponse.Success)
+            {
+                return Ok(new { AccessToken = authResponse.Token, RefreshToken = authResponse.RefreshToken });
+            }
+            return Unauthorized(new { Message = authResponse.Message });
+        }
     }
 }

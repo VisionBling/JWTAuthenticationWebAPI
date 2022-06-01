@@ -9,6 +9,8 @@ namespace JWTAuthWebAPI.Services.Interfaces
         Task<string> GenerateJwtToken(ApplicationUser user);
         Task<IdentityResult> RegisterUserAsync(RegisterModel model);
         Task<AuthResponse> LoginUserAsync(LoginModel model);
+        Task<AuthResponse> RefreshTokenAsync(string refreshToken);
+
     }
 
 }
