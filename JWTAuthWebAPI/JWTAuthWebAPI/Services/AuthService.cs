@@ -29,11 +29,7 @@ namespace JWTAuthWebAPI.Services
             _context = context;
         }
 
-        /// <summary>
-        /// Generate JWT Token 
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+       
         public async Task<string> GenerateJwtToken(ApplicationUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
