@@ -29,6 +29,11 @@ namespace JWTAuthWebAPI.Services
             _context = context;
         }
 
+        /// <summary>
+        /// Generate JWT Token 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public async Task<string> GenerateJwtToken(ApplicationUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
@@ -68,6 +73,11 @@ namespace JWTAuthWebAPI.Services
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<IdentityResult> RegisterUserAsync(RegisterModel model)
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
@@ -102,6 +112,11 @@ namespace JWTAuthWebAPI.Services
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<AuthResponse> LoginUserAsync(LoginModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
