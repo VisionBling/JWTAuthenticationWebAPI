@@ -112,11 +112,7 @@ namespace JWTAuthWebAPI.Services
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+      
         public async Task<AuthResponse> LoginUserAsync(LoginModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
