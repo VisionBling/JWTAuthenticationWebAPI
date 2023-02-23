@@ -73,11 +73,7 @@ namespace JWTAuthWebAPI.Services
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        
         public async Task<IdentityResult> RegisterUserAsync(RegisterModel model)
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
