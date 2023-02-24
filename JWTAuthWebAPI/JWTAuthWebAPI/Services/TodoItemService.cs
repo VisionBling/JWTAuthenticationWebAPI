@@ -64,34 +64,36 @@ namespace JWTAuthWebAPI.Services
             };
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+       
         public async Task<TodoItemModel> CreateItemAsync(TodoItemModel model)
         {
-            
-            var user = await _userManager.FindByIdAsync(model.User.UserId);
-            if (user == null) throw new Exception("User not found.");
-
-            var item = new TodoItem
+            try
             {
-                Name = model.Name,
-                IsComplete = model.IsComplete,
-                UserId = user.Id 
-            };
+                var user = await _userManager.FindByIdAsync(model.User.UserId);
+                if (user == null) throw new Exception("User not found.");
 
-            _context.TodoItems.Add(item);
-            model.Id = await _context.SaveChangesAsync();  
+                var item = new TodoItem
+                {
+                    Name = model.Name,
+                    IsComplete = model.IsComplete,
+                    UserId = user.Id
+                };
+
+                _context.TodoItems.Add(item);
+                model.Id = await _context.SaveChangesAsync();
+
+
+                model.User = new User
+                {
+                    UserId = user.Id,
+                    FullName = $"{user.FirstName} {user.LastName}"
+                };
+            }
             
-             
-            model.User = new User
+            catch (Exception ex)
             {
-                UserId = user.Id,
-                FullName = $"{user.FirstName} {user.LastName}"
-            };
+                throw ex;
+            }
 
             return model;
         }
