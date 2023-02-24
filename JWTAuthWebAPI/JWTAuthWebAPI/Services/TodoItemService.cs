@@ -64,6 +64,12 @@ namespace JWTAuthWebAPI.Services
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<TodoItemModel> CreateItemAsync(TodoItemModel model)
         {
             
