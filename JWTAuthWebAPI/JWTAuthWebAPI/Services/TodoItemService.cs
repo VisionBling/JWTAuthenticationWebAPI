@@ -18,6 +18,10 @@ namespace JWTAuthWebAPI.Services
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<TodoItemModel>> GetAllItemsAsync()
         {
             return await _context.TodoItems.Include(r=>r.User)
