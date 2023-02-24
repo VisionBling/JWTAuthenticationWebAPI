@@ -39,6 +39,12 @@ namespace JWTAuthWebAPI.Services
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<TodoItemModel> GetItemByIdAsync(int id)
         {
             var item = await _context.TodoItems.Include(r=>r.User).Where(r=>r.Id == id).FirstOrDefaultAsync();    
