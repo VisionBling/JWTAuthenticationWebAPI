@@ -47,21 +47,29 @@ namespace JWTAuthWebAPI.Services
         /// <exception cref="Exception"></exception>
         public async Task<TodoItemModel> GetItemByIdAsync(int id)
         {
-            var item = await _context.TodoItems.Include(r=>r.User).Where(r=>r.Id == id).FirstOrDefaultAsync();    
-            if (item == null) throw new Exception("Item not found.");
-
-
-            return new TodoItemModel
+            try
             {
-                Id = item.Id,
-                Name = item.Name,
-                IsComplete = item.IsComplete,
-                User = new User
+                var item = await _context.TodoItems.Include(r => r.User).Where(r => r.Id == id).FirstOrDefaultAsync();
+                if (item == null) throw new Exception("Item not found.");
+
+
+                return new TodoItemModel
                 {
-                    UserId = item.UserId,
-                    FullName = $"{item.User.FirstName} {item.User.LastName}"
-                }               
-            };
+                    Id = item.Id,
+                    Name = item.Name,
+                    IsComplete = item.IsComplete,
+                    User = new User
+                    {
+                        UserId = item.UserId,
+                        FullName = $"{item.User.FirstName} {item.User.LastName}"
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
 
        
