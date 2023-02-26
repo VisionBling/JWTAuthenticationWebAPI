@@ -187,6 +187,13 @@ namespace JWTAuthWebAPI.Services
 
             return new AuthResponse(true, "Token refreshed successfully.", newAccessToken, newRefreshToken);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private async Task<string> GetUserIdFromRefreshToken(string refreshToken)
         {
             var token = await _context.UserRefreshTokens.FirstOrDefaultAsync(t => t.RefreshToken == refreshToken && t.Expires > DateTime.UtcNow);
