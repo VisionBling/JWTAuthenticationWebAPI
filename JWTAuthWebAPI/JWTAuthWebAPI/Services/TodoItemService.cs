@@ -35,11 +35,7 @@ namespace JWTAuthWebAPI.Services
                 })
                 .ToListAsync();
         }
-/// <summary>
-/// 
-/// </summary>
-/// <param name="id"></param>
-/// <returns></returns>
+
         public async Task<TodoItemModel> GetItemByIdAsync(int id)
         {
             try
