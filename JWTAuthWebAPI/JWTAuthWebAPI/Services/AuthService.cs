@@ -150,6 +150,12 @@ namespace JWTAuthWebAPI.Services
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
         private async Task SaveRefreshToken(string userId, string refreshToken)
         {
             // Optionally, check if a token already exists for the user and update it
@@ -171,6 +177,11 @@ namespace JWTAuthWebAPI.Services
 
             await _context.SaveChangesAsync();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
         public async Task<AuthResponse> RefreshTokenAsync(string refreshToken)
         {
             var userId = await GetUserIdFromRefreshToken(refreshToken); // Implement this method to retrieve user ID based on the refresh 
