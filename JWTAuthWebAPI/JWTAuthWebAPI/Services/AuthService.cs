@@ -55,7 +55,7 @@ namespace JWTAuthWebAPI.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expiry = DateTime.UtcNow.AddHours(1);
 
-            // Define JWT issuer 
+            // Define JWT issuer and Audience
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
