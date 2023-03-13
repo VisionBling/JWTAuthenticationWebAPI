@@ -56,7 +56,7 @@ namespace JWTAuthWebAPI.Services
 
         public async Task<TodoItemModel> CreateItemAsync(TodoItemModel model)
         {
-            //
+            
             var user = await _userManager.FindByIdAsync(model.User.UserId);
             if (user == null) throw new Exception("User not found.");
 
@@ -69,7 +69,9 @@ namespace JWTAuthWebAPI.Services
 
             _context.TodoItems.Add(item);
            
-            model.Id = await _context.SaveChangesAsync();          
+            model.Id = await _context.SaveChangesAsync();  
+            
+            // return new user
             model.User = new User
             {
                 UserId = user.Id,
