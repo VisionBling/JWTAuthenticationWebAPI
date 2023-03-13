@@ -56,6 +56,7 @@ namespace JWTAuthWebAPI.Services
 
         public async Task<TodoItemModel> CreateItemAsync(TodoItemModel model)
         {
+            //
             var user = await _userManager.FindByIdAsync(model.User.UserId);
             if (user == null) throw new Exception("User not found.");
 
