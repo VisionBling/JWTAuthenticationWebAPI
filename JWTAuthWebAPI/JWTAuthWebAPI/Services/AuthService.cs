@@ -70,7 +70,6 @@ namespace JWTAuthWebAPI.Services
 
         public async Task<IdentityResult> RegisterUserAsync(RegisterModel model)
         {
-            // get email by user
             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
             {
