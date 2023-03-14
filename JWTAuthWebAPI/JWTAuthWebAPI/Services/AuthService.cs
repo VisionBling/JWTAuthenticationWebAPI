@@ -165,7 +165,7 @@ namespace JWTAuthWebAPI.Services
         }
         public async Task<AuthResponse> RefreshTokenAsync(string refreshToken)
         {
-            var userId = await GetUserIdFromRefreshToken(refreshToken); // Implement this method to retrieve user ID based on the refresh token
+            var userId = await GetUserIdFromRefreshToken(refreshToken); // Implement this method to retrieve user ID based on the refresh 
             if (userId == null) return new AuthResponse(false, "Invalid refresh token.");
 
             var user = await _userManager.FindByIdAsync(userId);
