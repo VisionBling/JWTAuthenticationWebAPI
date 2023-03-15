@@ -75,7 +75,6 @@ namespace JWTAuthWebAPI.Services
             {
                 return IdentityResult.Failed(new IdentityError { Description = "User with this email already exists." });
             }
-            // Create application user
             ApplicationUser user = new ApplicationUser
             {
                 Email = model.Email,
