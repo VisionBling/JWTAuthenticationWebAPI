@@ -71,7 +71,7 @@ namespace JWTAuthWebAPI.Services
            
             model.Id = await _context.SaveChangesAsync();  
             
-            // return new user
+            // return 
             model.User = new User
             {
                 UserId = user.Id,
