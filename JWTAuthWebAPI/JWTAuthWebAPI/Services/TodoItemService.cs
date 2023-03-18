@@ -37,7 +37,7 @@ namespace JWTAuthWebAPI.Services
 
         public async Task<TodoItemModel> GetItemByIdAsync(int id)
         {
-            // find by user
+            // find by user by id
             var item = await _context.TodoItems.Include(r=>r.User).Where(r=>r.Id == id).FirstOrDefaultAsync();    
             if (item == null) throw new Exception("Item not found.");
 
