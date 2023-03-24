@@ -68,7 +68,6 @@ namespace JWTAuthWebAPI.Services
             };
 
             _context.TodoItems.Add(item);
-           // save to do 
             model.Id = await _context.SaveChangesAsync();  
             
              
