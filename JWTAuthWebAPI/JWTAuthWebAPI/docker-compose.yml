@@ -1,3 +1,4 @@
+# docker-compose.yml for Clean Architecture
 version: '3.8'
 
 services:
@@ -9,6 +10,8 @@ services:
       - "${WEBAPI_PORT:-5000}:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    secrets:
+      - sa_password
     depends_on:
       - database
     networks:
@@ -18,11 +21,15 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
 
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: "${SA_PASSWORD:-YourStrong!Password}"
       ACCEPT_EULA: "Y"
     ports:
       - "${DB_PORT:-1433}:1433"
@@ -31,13 +38,24 @@ services:
     networks:
       - api_network
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "${SA_PASSWORD:-YourStrong!Password}", "-Q", "SELECT 1"]
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "/run/secrets/sa_password", "-Q", "SELECT 1"]
       interval: 30s
       timeout: 10s
       retries: 3
+    secrets:
+      - sa_password
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "1G"
 
 volumes:
   db_data:
 
 networks:
   api_network:
+
+secrets:
+  sa_password:
+    file: ./secrets/sa_password.txt
