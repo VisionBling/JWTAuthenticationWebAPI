@@ -1,4 +1,4 @@
-# docker-compose.yml for Clean Architecture
+# docker-compose.yml
 version: '3.8'
 
 services:
