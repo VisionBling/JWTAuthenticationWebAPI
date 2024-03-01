@@ -174,7 +174,7 @@ namespace JWTAuthWebAPI.Services
             // Optionally validate or rotate the refresh token here
 
             var newAccessToken = await GenerateJwtToken(user);
-            var newRefreshToken = GenerateRefreshToken();
+            var newRefreshToken = GenerateRefreshToken();  // Generate referesh token 
             _ = SaveRefreshToken(userId, newRefreshToken); // Save the new refresh token
 
             return new AuthResponse(true, "Token refreshed successfully.", newAccessToken, newRefreshToken);
